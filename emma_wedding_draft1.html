@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Emma &amp; Alex</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400;1,6..96,500&family=Karla:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1D2740;        /* midnight navy */
+    --dusk: #5B6C93;       /* periwinkle */
+    --mist: #E9EDF4;       /* pale sky */
+    --paper: #FBFCFE;
+    --gilt: #B8913F;       /* ochre gold */
+    --line: #CBD3E2;
+    --serif: "Bodoni Moda", "Didot", Georgia, serif;
+    --sans: "Karla", "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+  body { background: var(--paper); color: var(--ink); font: 400 1.0625rem/1.65 var(--sans); }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--gilt); outline-offset: 3px; }
+
+  /* nav */
+  nav { position: sticky; top: 0; z-index: 10; background: rgba(251,252,254,.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+  nav ul { list-style: none; display: flex; gap: 1.75rem; justify-content: center; padding: 1rem 1.25rem; overflow-x: auto; white-space: nowrap; }
+  nav a { text-decoration: none; font-weight: 500; font-size: .95rem; color: var(--dusk); }
+  nav a:hover { color: var(--ink); }
+
+  /* hero */
+  .hero { min-height: 92vh; display: grid; place-items: center; text-align: center; padding: 4rem 1.25rem; background:
+      radial-gradient(ellipse at 50% 120%, #D7DEEC 0%, transparent 60%), var(--paper); }
+  .names { font-family: var(--serif); font-weight: 400; font-size: clamp(3.5rem, 13vw, 9.5rem); line-height: .92; letter-spacing: -.02em; }
+  .names .amp { display: block; font-style: italic; color: var(--gilt); font-size: .55em; line-height: 1.1; }
+  .when { margin-top: 2.25rem; font-family: var(--serif); font-style: italic; font-size: clamp(1.25rem, 3vw, 1.75rem); }
+  .where { margin-top: .35rem; color: var(--dusk); }
+  .countdown { margin-top: 2.5rem; display: inline-flex; gap: .5rem; align-items: baseline; border-top: 1px solid var(--line); padding-top: 1.25rem; color: var(--dusk); }
+  .countdown strong { font-family: var(--serif); font-size: 2rem; font-weight: 400; color: var(--ink); }
+  .btn { display: inline-block; margin-top: 2rem; padding: .85rem 2rem; background: var(--ink); color: var(--paper); text-decoration: none; font-weight: 600; border-radius: 999px; }
+  .btn:hover { background: var(--dusk); }
+
+  /* sections */
+  section.block { padding: 6rem 1.25rem; }
+  section.block:nth-of-type(even) { background: var(--mist); }
+  .wrap { max-width: 44rem; margin: 0 auto; }
+  .wide { max-width: 64rem; margin: 0 auto; }
+  h2 { font-family: var(--serif); font-weight: 400; font-style: italic; font-size: clamp(2.25rem, 5vw, 3.25rem); line-height: 1.1; margin-bottom: 2rem; text-align: center; }
+  h3 { font-family: var(--serif); font-weight: 500; font-size: 1.4rem; margin-bottom: .5rem; }
+  p + p { margin-top: 1rem; }
+
+  .story p { font-family: var(--serif); font-size: 1.2rem; line-height: 1.8; }
+  .story p:first-child::first-letter { float: left; font-size: 4.2rem; line-height: .85; padding: .3rem .5rem 0 0; color: var(--gilt); }
+
+  .details { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 3rem; }
+  .details .time { color: var(--gilt); font-weight: 600; }
+  .details address { font-style: normal; color: var(--dusk); margin-top: .5rem; }
+
+  .timeline { list-style: none; border-left: 1px solid var(--gilt); margin-left: 5.5rem; }
+  .timeline li { position: relative; padding: 0 0 2.25rem 1.75rem; }
+  .timeline li::before { content: ""; position: absolute; left: -5px; top: .55rem; width: 9px; height: 9px; border-radius: 50%; background: var(--gilt); }
+  .timeline time { position: absolute; left: -6.75rem; width: 5.5rem; text-align: right; top: .1rem; font-weight: 600; color: var(--dusk); }
+
+  .stay { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 2.5rem; }
+  .stay p { color: #3c4766; }
+
+  .registry { text-align: center; }
+  .registry .links { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 2rem; }
+  .registry .links a { padding: .75rem 1.5rem; border: 1px solid var(--ink); border-radius: 999px; text-decoration: none; font-weight: 500; }
+  .registry .links a:hover { background: var(--ink); color: var(--paper); }
+
+  .rsvp { text-align: center; }
+  .rsvp .deadline { font-family: var(--serif); font-style: italic; font-size: 1.25rem; margin-bottom: 1.5rem; }
+  .rsvp iframe { width: 100%; min-height: 900px; border: 0; margin-top: 2rem; background: var(--paper); }
+
+  .faq details { border-bottom: 1px solid var(--line); padding: 1.25rem 0; }
+  .faq summary { cursor: pointer; font-weight: 600; list-style: none; display: flex; justify-content: space-between; gap: 1rem; }
+  .faq summary::after { content: "+"; font-family: var(--serif); font-size: 1.5rem; line-height: 1; color: var(--gilt); }
+  .faq details[open] summary::after { content: "–"; }
+  .faq details p { margin-top: .75rem; color: #3c4766; }
+
+  footer { text-align: center; padding: 4rem 1.25rem; background: var(--ink); color: var(--mist); }
+  footer .names-sm { font-family: var(--serif); font-style: italic; font-size: 2rem; }
+
+  @media (max-width: 560px) {
+    .timeline { margin-left: 0; }
+    .timeline time { position: static; display: block; text-align: left; width: auto; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<!-- =========================================================
+     EDIT THESE: the hero, countdown and footer read from here.
+     Everything else is plain HTML below.
+     ========================================================= -->
+<script>
+  const WEDDING = {
+    partner1: "Emma",
+    partner2: "Alex",                 // placeholder
+    date: "2027-06-12T16:00:00",      // placeholder, local time
+    dateText: "Saturday, June 12, 2027",
+    place: "Somewhere Beautiful, Ohio"
+  };
+</script>
+
+<nav aria-label="Sections">
+  <ul>
+    <li><a href="#story">Our story</a></li>
+    <li><a href="#details">Details</a></li>
+    <li><a href="#schedule">Schedule</a></li>
+    <li><a href="#stay">Travel</a></li>
+    <li><a href="#registry">Registry</a></li>
+    <li><a href="#rsvp">RSVP</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+</nav>
+
+<header class="hero">
+  <div>
+    <h1 class="names"><span data-p1>Emma</span><span class="amp">&amp;</span><span data-p2>Alex</span></h1>
+    <p class="when" data-datetext></p>
+    <p class="where" data-place></p>
+    <p class="countdown" aria-live="polite"><strong data-days>—</strong> <span data-days-label>days to go</span></p>
+    <div><a class="btn" href="#rsvp">RSVP</a></div>
+  </div>
+</header>
+
+<section class="block" id="story">
+  <div class="wrap story">
+    <h2>Our story</h2>
+    <p>This is where the story of how they met goes. A couple of short paragraphs work best — where it started, a favorite memory or two, and how the proposal happened.</p>
+    <p>Keep it in their voice. Guests love the small, specific details more than the big summary.</p>
+  </div>
+</section>
+
+<section class="block" id="details">
+  <div class="wide">
+    <h2>The day</h2>
+    <div class="details">
+      <div>
+        <h3>Ceremony</h3>
+        <p class="time">4:00 pm</p>
+        <p>Venue name</p>
+        <address>123 Street Name<br>City, State ZIP</address>
+      </div>
+      <div>
+        <h3>Reception</h3>
+        <p class="time">5:30 pm until late</p>
+        <p>Venue name</p>
+        <address>123 Street Name<br>City, State ZIP</address>
+      </div>
+      <div>
+        <h3>Attire</h3>
+        <p>Dress code goes here, plus anything guests should know about the setting — grass, stairs, evening chill.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="schedule">
+  <div class="wrap">
+    <h2>Schedule</h2>
+    <ol class="timeline">
+      <li><time>3:30 pm</time><h3>Guests arrive</h3><p>Find a seat, grab a lemonade.</p></li>
+      <li><time>4:00 pm</time><h3>Ceremony</h3><p>About 30 minutes.</p></li>
+      <li><time>4:30 pm</time><h3>Cocktail hour</h3><p>Drinks and appetizers on the lawn.</p></li>
+      <li><time>5:30 pm</time><h3>Dinner</h3><p>Toasts during dinner.</p></li>
+      <li><time>7:00 pm</time><h3>Dancing</h3><p>Until they kick us out.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="block" id="stay">
+  <div class="wide">
+    <h2>Travel &amp; stay</h2>
+    <div class="stay">
+      <div>
+        <h3>Hotel block</h3>
+        <p>Hotel name, address, the group code, and the date the block releases.</p>
+      </div>
+      <div>
+        <h3>Getting there</h3>
+        <p>Nearest airport, driving notes, and parking at the venue.</p>
+      </div>
+      <div>
+        <h3>Things to do</h3>
+        <p>A few favorite local spots for guests coming in for the weekend.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block registry" id="registry">
+  <div class="wrap">
+    <h2>Registry</h2>
+    <p>Your presence is the best gift. If you'd like to give something more, here's where we're registered.</p>
+    <div class="links">
+      <a href="#" target="_blank" rel="noopener">Registry one</a>
+      <a href="#" target="_blank" rel="noopener">Registry two</a>
+    </div>
+  </div>
+</section>
+
+<section class="block rsvp" id="rsvp">
+  <div class="wrap">
+    <h2>RSVP</h2>
+    <p class="deadline">Kindly reply by May 1, 2027</p>
+    <p>Fill out the form below once per household.</p>
+    <!-- Paste the Google Form embed URL into src when it's ready -->
+    <!-- <iframe src="https://docs.google.com/forms/d/e/FORM_ID/viewform?embedded=true" title="RSVP form" loading="lazy"></iframe> -->
+  </div>
+</section>
+
+<section class="block faq" id="faq">
+  <div class="wrap">
+    <h2>Questions</h2>
+    <details><summary>Can I bring a plus-one?</summary><p>Answer goes here.</p></details>
+    <details><summary>Are kids welcome?</summary><p>Answer goes here.</p></details>
+    <details><summary>Is the venue indoors or outdoors?</summary><p>Answer goes here.</p></details>
+    <details><summary>Where should I park?</summary><p>Answer goes here.</p></details>
+  </div>
+</section>
+
+<footer>
+  <p class="names-sm"><span data-p1>Emma</span> &amp; <span data-p2>Alex</span></p>
+  <p data-datetext></p>
+</footer>
+
+<script>
+  const $all = s => document.querySelectorAll(s);
+  $all("[data-p1]").forEach(e => e.textContent = WEDDING.partner1);
+  $all("[data-p2]").forEach(e => e.textContent = WEDDING.partner2);
+  $all("[data-datetext]").forEach(e => e.textContent = WEDDING.dateText);
+  $all("[data-place]").forEach(e => e.textContent = WEDDING.place);
+  document.title = `${WEDDING.partner1} & ${WEDDING.partner2}`;
+
+  const days = Math.ceil((new Date(WEDDING.date) - new Date()) / 86400000);
+  const d = document.querySelector("[data-days]"), lbl = document.querySelector("[data-days-label]");
+  if (days > 1) { d.textContent = days; lbl.textContent = "days to go"; }
+  else if (days === 1) { d.textContent = "1"; lbl.textContent = "day to go"; }
+  else if (days === 0) { d.textContent = "Today"; lbl.textContent = "is the day"; }
+  else { d.textContent = "Married"; lbl.textContent = `on ${WEDDING.dateText}`; }
+</script>
+</body>
+</html>
